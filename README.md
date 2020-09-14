@@ -1,4 +1,4 @@
-# Welcome to TechElevator
+# Welcome to Tech Elevator
 
 ### Java Blue!
 
