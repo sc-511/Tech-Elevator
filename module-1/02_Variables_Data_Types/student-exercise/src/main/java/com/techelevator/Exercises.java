@@ -448,6 +448,13 @@ public class Exercises {
 		double avgRate = (billRate + jillRate) /2;
 		double fiveRoomsTime = 5 * avgRate;
 		System.out.println(fiveRoomsTime + " Hours" + " for 5 rooms together");
+		/*
+        Create and assign variables to hold your first name, last name, and middle initial. Using concatenation,
+        build an additional variable to hold your full name in the order of last name, first name, middle initial. The
+        last and first names should be separated by a comma followed by a space, and the middle initial must end
+        with a period.
+        Example: "Hopper, Grace B."
+        */
 		String firstN = "Shane";
 		String lastN = "Craig";
 		String MiddleIn = "C";
