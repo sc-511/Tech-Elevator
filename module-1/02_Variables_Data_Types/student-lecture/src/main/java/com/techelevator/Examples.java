@@ -29,6 +29,8 @@ public class Examples {
 		y = x;
 		// 3) assigning the result of an expression
 		y = x + 3;
+		x = 5;
+		x += 10;
 		
 		// ******************
 		// LITERALS
@@ -54,6 +56,8 @@ public class Examples {
 		int numberOfJavaStudents = 14;
 		int totalNumberOfStudents = numberOfNETStudents + numberOfJavaStudents;
 		System.out.println("totalNumberOfStudents is equal to: "+totalNumberOfStudents);
+		
+		
 		
 		// **********************
 		// TRUNCATION AND CASTING
