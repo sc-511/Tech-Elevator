@@ -1,9 +1,27 @@
 package com.techelevator;
 
+import java.util.Scanner;
+
 public class Lecture {
 
 	public static void main(String[] args) {
 
+//		System.out.println("Enter [F] for Fahrenheit or [C] for Celcius");
+//		
+//		Scanner keyboard = new Scanner(System.in);
+//		
+//		String userTyped = keyboard.nextLine();
+//		if (userTyped.equalsIgnoreCase("F")) {
+//			System.out.println("Fahrenheit");
+//		}
+//		else if (userTyped.equalsIgnoreCase("C")) {
+//			System.out.println("Celcius");
+//		}
+//		else {
+//			System.out.println("I dunno");
+//		}
+		
+		
 		System.out.println("************************************");
 		System.out.println("****** MAKING A STRING OBJECT ******");
 		System.out.println("************************************");
@@ -14,7 +32,8 @@ public class Lecture {
 		 * is not the case for most classes */
 
 		/* create an new instance of String using a literal */
-
+		
+		String literal = "This is an example of a literal";
 		
 		System.out.println();
 		System.out.println("******************************");
@@ -22,7 +41,16 @@ public class Lecture {
 		System.out.println("******************************");
 		System.out.println();
 
-
+		System.out.println(literal.endsWith("hat"));
+		System.out.println(literal.indexOf("is"));
+		System.out.println(literal.indexOf("is", 3));
+		System.out.println(literal.lastIndexOf("is"));
+		
+		System.out.println(literal.substring(4));
+		System.out.println(literal.substring(5));
+		System.out.println(literal.substring(5, 10));
+		System.out.println("             .trim() will remove whitespace at the beginning and at the end               " .trim());
+		// will remove whitespace at the beginning and at the end but not the middle
 		/* Other commonly used methods:
 		 *
 		 * endsWith
@@ -35,7 +63,7 @@ public class Lecture {
 		 * toUpperCase
 		 * trim
 		 */
-
+		
 		System.out.println();
 		System.out.println("**********************");
 		System.out.println("****** EQUALITY ******");
@@ -46,6 +74,17 @@ public class Lecture {
 
 		/* Double equals will compare to see if the two variables, hello1 and
 		 * hello2 point to the same object in memory. Are they the same object? */
+		
+		/*  IN-CLASS EXAMPLE 
+		 * String[] pieces = "Tom Medvitz, Esquire".split(" ");
+		 * for (int i = 0; i < pieces.length; i++){
+		 * 	pieces[i] = pieces [i].toUpperCase();
+		 * 	System.out.println(pieces[i]);
+		 */
+		
+		String hello1 = "Hello!";
+		String hello2 = "Hello!";
+		
 		if (hello1 == hello2) {
 			System.out.println("They are equal!");
 		} else {
