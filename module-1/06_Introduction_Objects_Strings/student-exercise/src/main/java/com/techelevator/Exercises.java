@@ -489,17 +489,14 @@ public class Exercises {
 		
 		String removeX = ""; 
 		
-		for (int i = 1; i < str.length() - 1;) {
+		for (int i = 0; i < str.length();i++) {
 			
-			if (str.substring(i, i + 1 ).equals("x")) {
-				
-				i++;
-				
-			}
-			else {
+			if ((i > 0 && str.length() -1 > i && str.substring(i, i + 1 ).equals("x"))) {
 				
 				removeX += str.substring(i, i + 1);
+				
 			}
+			
 		}
 		return removeX;
 	}
