@@ -34,7 +34,29 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
-		return null;
+		
+		Map <String, String> animalGroup = new HashMap <String, String>();
+		
+		animalGroup.put("Rihino", "Crash");
+		animalGroup.put("Giraffe", "Tower");
+		animalGroup.put("Elephant", "Herd");
+		animalGroup.put("Lion", "Pride");
+		animalGroup.put("Crow", "Murder");
+		animalGroup.put("Pigeon", "Kit");
+		animalGroup.put("Flamingo", "Pat");
+		animalGroup.put("Deer", "Herd");
+		animalGroup.put("Dog", "Pack");
+		animalGroup.put("Crocodile", "Float");
+		
+		if(animalName == null) {
+			return "unknown";
+		}
+		String group = animalGroup.get(animalName.toLowerCase());
+		if (group == null) {
+			group = "unknown";
+		}
+		
+		return group;
 	}
 
 	/*

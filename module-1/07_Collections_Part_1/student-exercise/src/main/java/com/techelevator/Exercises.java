@@ -226,6 +226,7 @@ public class Exercises {
 		}
 		
 		System.out.println(interviewQuestion);
+		
 		return interviewQuestion;
 		
 		
@@ -245,10 +246,13 @@ public class Exercises {
 		if (listOne.size() < listTwo.size()) {
 			
 			for (int i = 0; i < listOne.size(); i++) {
+				
 				mixOfBothArrays.add(listOne.get(i));
+				
 				mixOfBothArrays.add(listTwo.get(i));
 			}
 			for (int i = listOne.size(); i < listTwo.size(); i++) {
+				
 				mixOfBothArrays.add(listTwo.get(i));
 			}
 		}
@@ -256,23 +260,32 @@ public class Exercises {
 		else if (listOne.size() > listTwo.size()) {
 			
 			for (int i = 0; i < listTwo.size(); i++) {
+				
 				mixOfBothArrays.add(listOne.get(i));
+				
 				mixOfBothArrays.add(listTwo.get(i));
 				
 		}
 			for (int i = listTwo.size(); i < listOne.size(); i++) {
+				
 				mixOfBothArrays.add(listOne.get(i));
 			}
 	}
 		else {
+			
 			for (int i = 0; i < listTwo.size(); i++) {
+				
 				mixOfBothArrays.add(listOne.get(i));
+				
 				mixOfBothArrays.add(listTwo.get(i));
 				}
 			
 			}
+		
 		return mixOfBothArrays;
-		}
+		
+	}
+	
 		
 		
 
@@ -286,7 +299,28 @@ public class Exercises {
 	 boardingGate( [0, -1, 44, 31, 17, 7, 27, 16, 26, 6] ) -> [7, 6, 17, 16, 27, 26]
 	 */
 	public List<Integer> boardingGate(List<Integer> seatNumberList) {
-		return null;
-	}
+		
+		List <Integer> numberRanges = new ArrayList <Integer> ();
+		
+		for (int x : seatNumberList) {
 
-}
+			if (x >= 1 && x <= 10) {
+				numberRanges.add(x);
+				
+				
+						}
+					}
+		for (int y: seatNumberList) {
+				if (y >= 11 && y <= 20) {
+					numberRanges.add(y);
+				}
+			
+			}
+		for (int z: seatNumberList) {
+			if (z >= 21 && z <= 30) {
+				numberRanges.add(z);
+			}
+		}
+		return numberRanges;
+		}
+	}
