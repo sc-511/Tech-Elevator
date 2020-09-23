@@ -18,7 +18,7 @@ public class TempConvert {
 		
 		String cOrF = keyboard.nextLine();
 		
-		if (cOrF.equals("c")) {
+		if (cOrF.equals("C")) {
 			
 			double valF = tempVal * 1.8 + 32;
 			

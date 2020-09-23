@@ -245,11 +245,36 @@ public class Exercises {
 		if (listOne.size() < listTwo.size()) {
 			
 			for (int i = 0; i < listOne.size(); i++) {
-				mixOfBothArrays.add(listOne.get(i) , listTwo.get(i));
+				mixOfBothArrays.add(listOne.get(i));
+				mixOfBothArrays.add(listTwo.get(i));
+			}
+			for (int i = listOne.size(); i < listTwo.size(); i++) {
+				mixOfBothArrays.add(listTwo.get(i));
 			}
 		}
+		
+		else if (listOne.size() > listTwo.size()) {
 			
+			for (int i = 0; i < listTwo.size(); i++) {
+				mixOfBothArrays.add(listOne.get(i));
+				mixOfBothArrays.add(listTwo.get(i));
+				
+		}
+			for (int i = listTwo.size(); i < listOne.size(); i++) {
+				mixOfBothArrays.add(listOne.get(i));
+			}
 	}
+		else {
+			for (int i = 0; i < listTwo.size(); i++) {
+				mixOfBothArrays.add(listOne.get(i));
+				mixOfBothArrays.add(listTwo.get(i));
+				}
+			
+			}
+		return mixOfBothArrays;
+		}
+		
+		
 
 	/*
 	 Given a list of Integers representing seat numbers, group them into ranges 1-10, 11-20, and 21-30.
