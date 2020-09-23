@@ -193,6 +193,31 @@ public class ExercisesTest {
 
 	}
 
+	@Test
+	public void exercise10_boardingGate() {
+		List<Integer> trialList = exercises
+				.boardingGate(new ArrayList<Integer>(Arrays.asList(1, 13, 43, 22, 8, 11, 30, 2, 4, 14, 21)));
+		String failureMessage = compareArrayLists(
+				new ArrayList<Integer>(Arrays.asList(1, 8, 2, 4, 13, 11, 14, 22, 30, 21)), trialList);
+		if (failureMessage != null) {
+			fail("Input: boardingGate([1, 13, 43, 22, 8, 11, 30, 2, 4, 14, 21])" + failureMessage);
+		}
+
+		trialList = exercises
+				.boardingGate(new ArrayList<Integer>(Arrays.asList(29, 19, 9, 21, 11, 1, 0, 25, 15, 5, 31)));
+		failureMessage = compareArrayLists(new ArrayList<Integer>(Arrays.asList(9, 1, 5, 19, 11, 15, 29, 21, 25)),
+				trialList);
+		if (failureMessage != null) {
+			fail("Input: boardingGate([29, 19, 9, 21, 11, 1, 0, 25, 15, 5, 31])" + failureMessage);
+		}
+
+		trialList = exercises.boardingGate(new ArrayList<Integer>(Arrays.asList(0, -1, 44, 31, 17, 7, 27, 16, 26, 6)));
+		failureMessage = compareArrayLists(new ArrayList<Integer>(Arrays.asList(7, 6, 17, 16, 27, 26)), trialList);
+		if (failureMessage != null) {
+			fail("Input: boardingGate([0, -1, 44, 31, 17, 7, 27, 16, 26, 6])" + failureMessage);
+		}
+	}
+
 	/*
 	 * Compares two ArrayLists, and returns a null failure message if the lists are equal.
 	 * Otherwise, if the lists are not equal, returns a failure message explaining why.
