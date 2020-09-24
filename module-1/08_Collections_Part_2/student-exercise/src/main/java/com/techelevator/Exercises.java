@@ -37,26 +37,30 @@ public class Exercises {
 		
 		Map <String, String> animalGroup = new HashMap <String, String>();
 		
-		animalGroup.put("Rihino", "Crash");
-		animalGroup.put("Giraffe", "Tower");
-		animalGroup.put("Elephant", "Herd");
-		animalGroup.put("Lion", "Pride");
-		animalGroup.put("Crow", "Murder");
-		animalGroup.put("Pigeon", "Kit");
-		animalGroup.put("Flamingo", "Pat");
-		animalGroup.put("Deer", "Herd");
-		animalGroup.put("Dog", "Pack");
-		animalGroup.put("Crocodile", "Float");
+		animalGroup.put("rhino", "Crash");
+		animalGroup.put("giraffe", "Tower");
+		animalGroup.put("elephant", "Herd");
+		animalGroup.put("lion", "Pride");
+		animalGroup.put("crow", "Murder");
+		animalGroup.put("pigeon", "Kit");
+		animalGroup.put("flamingo", "Pat");
+		animalGroup.put("deer", "Herd");
+		animalGroup.put("dog", "Pack");
+		animalGroup.put("crocodile", "Float");
 		
 		if(animalName == null) {
+			
 			return "unknown";
 		}
-		String group = animalGroup.get(animalName.toLowerCase());
-		if (group == null) {
-			group = "unknown";
-		}
-		
+			String group = animalGroup.get(animalName.toLowerCase());
+			
+			if(group == null) {
+				
+				return "unknown";
+			}
+			
 		return group;
+		
 	}
 
 	/*
@@ -82,8 +86,40 @@ public class Exercises {
 	 *
 	 */
 	public double isItOnSale(String itemNumber) {
-		return -1.0;
-	}
+		
+		Map <String, Double> discountPercentage = new HashMap <String, Double>();
+		
+		discountPercentage.put("KITCHEN4001", 0.20);
+		discountPercentage.put("GARAGE1070", 0.15);
+		discountPercentage.put("LIVINGROOM", 0.10);
+		discountPercentage.put("KITCHEN6073", 0.40);
+		discountPercentage.put("BEDROOM3434", 0.60);
+		discountPercentage.put("BATH0073", 0.15);
+		
+		
+		
+		if (itemNumber == null) {
+			
+			return 0.00;
+		}
+			System.out.println(itemNumber);
+			
+			Double discount = discountPercentage.get(itemNumber.toUpperCase());
+			
+			System.out.println (discount);
+			
+			
+				if (discountPercentage.containsKey(itemNumber.toUpperCase())) {
+					
+					return discountPercentage.get(itemNumber.toUpperCase());
+				}
+				
+				else {
+					
+				return 0.00;
+				
+				}
+			}
 
 	/*
 	 * Modify and return the given Map as follows: if "Peter" has more than 0 money, transfer half of it to "Paul",
@@ -96,7 +132,30 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
-		return null;
+		
+		// value2 < 1000 && value1 > 0
+		// value2 += (value1  /  2) 
+		// return key1, value1 && key2, value2
+		
+		Integer peterValue = peterPaul.get("Peter");
+		
+		Integer paulValue = peterPaul.get("Paul");
+		
+			if (paulValue < 1000 && peterValue > 0) {
+				
+				paulValue+= (peterValue / 2);
+				
+				peterValue = (peterValue) - (peterValue / 2) ;
+				
+				
+				peterPaul.put("Paul", paulValue);
+				
+				peterPaul.put("Peter", peterValue);
+				
+				return peterPaul;
+			}
+			
+			return peterPaul;
 	}
 
 	/*
@@ -109,7 +168,38 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> peterPaulPartnership(Map<String, Integer> peterPaul) {
-		return null;
+		
+		Integer peterValue = peterPaul.get("Peter");
+		
+		Integer paulValue = peterPaul.get("Paul");
+		
+		double quarterPercentPeter = (peterValue) -(peterValue * .25); 
+		
+		double quarterPercentPaul = (paulValue) - (paulValue * .25);
+		
+		double paulContribute = (paulValue * .25);
+				
+		double peterContribute = (peterValue * .25);
+				
+		if (peterValue >= 5000 && paulValue >= 10000){
+			
+			peterValue = (int) quarterPercentPeter;
+			
+			paulValue = (int) quarterPercentPaul;
+			
+			Integer partnershipValue = (int)(paulContribute + peterContribute);
+			
+			peterPaul.put("Peter", peterValue);
+			
+			peterPaul.put("Paul", paulValue);
+			
+			peterPaul.put("PeterPaulPartnership", partnershipValue);
+			
+			return peterPaul;
+			
+		}
+		
+		return peterPaul;
 	}
 
 	/*
@@ -121,7 +211,18 @@ public class Exercises {
 	 * beginningAndEnding(["muddy", "good", "moat", "good", "night"]) → {"g": "d", "m": "t", "n": "t"}
 	 */
 	public Map<String, String> beginningAndEnding(String[] words) {
-		return null;
+		
+		Map <String, String> firstLastChar = new HashMap <String, String> ();
+		
+		for (String arrayValues : words) {
+			
+			String firstChar = arrayValues.substring(0, 1);
+			
+			String secondChar = arrayValues.substring(arrayValues.length()-1);
+			
+			firstLastChar.put(firstChar, secondChar);
+		}
+		return firstLastChar;
 	}
 
 	/*
@@ -137,7 +238,25 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> wordCount(String[] words) {
-		return null;
+		
+		Map <String, Integer> wordOccurence = new HashMap <String, Integer> ();
+		
+		Integer countOccurence = 0;
+		
+		for(String word : words) {
+			
+			
+			if (!(wordOccurence.containsKey(word))) {
+				
+				wordOccurence.put(word, 1);
+			}
+			else {
+				countOccurence = wordOccurence.get(word);
+				wordOccurence.put(word, countOccurence + 1);
+			}
+			
+		}
+		return wordOccurence;
 	}
 
 	/*
@@ -152,7 +271,27 @@ public class Exercises {
 	 *
 	 */
 	public Map<Integer, Integer> integerCount(int[] ints) {
-		return null;
+		
+		Map <Integer, Integer> duplicateCount = new HashMap <Integer, Integer> ();
+		
+		Integer valueCount = 0;
+		
+		for (Integer intArrayValue : ints) {
+			
+			
+			if (!(duplicateCount.containsKey(intArrayValue))){
+				
+				duplicateCount.put(intArrayValue, 1);
+		}
+			else {
+				
+				valueCount = duplicateCount.get(intArrayValue);
+				
+				duplicateCount.put(intArrayValue, valueCount + 1);
+			}
+			
+		}
+		return duplicateCount;
 	}
 
 	/*
@@ -165,7 +304,37 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Boolean> wordMultiple(String[] words) {
-		return null;
+		
+		Map <String, Boolean> wordDuplicationBoolean = new HashMap <String, Boolean> ();
+		
+		Boolean twoOrMore = true;
+		
+		Integer wordOccurence = 0;
+		
+		for (String word : words) {
+			
+			if (!(wordDuplicationBoolean.containsKey(word))) {
+				
+				wordOccurence++;
+				
+				wordDuplicationBoolean.put(word, !(twoOrMore));
+			}
+			else {
+				
+				wordOccurence++;
+				
+				System.out.println(wordOccurence);
+				
+				if (wordOccurence >= 2) {
+					
+					wordDuplicationBoolean.put(word, twoOrMore);
+				}
+			}
+		}
+		
+		System.out.println(wordDuplicationBoolean);
+		
+		return wordDuplicationBoolean;
 	}
 
 	/*
@@ -180,7 +349,36 @@ public class Exercises {
 	 */
 	public Map<String, Integer> consolidateInventory(Map<String, Integer> mainWarehouse,
 			Map<String, Integer> remoteWarehouse) {
-		return null;
+		
+		Map <String, Integer> combinedMap = new HashMap <String, Integer> ();
+		
+		
+		
+		for (String keyValue : mainWarehouse.keySet()) {
+			
+			if (!(combinedMap.containsKey(keyValue))) {
+				combinedMap.put(keyValue, mainWarehouse.get(keyValue));
+			}
+		}
+		
+		for (String keyValueTwo : remoteWarehouse.keySet()) {
+			
+			if (!(combinedMap.containsKey(keyValueTwo))) {
+				
+				combinedMap.put(keyValueTwo, remoteWarehouse.get(keyValueTwo));
+				
+			}
+			else {
+				combinedMap.put(keyValueTwo, (remoteWarehouse.get(keyValueTwo)) + (mainWarehouse.get(keyValueTwo)));
+				
+			}
+			
+			
+		}
+		
+		System.out.println(combinedMap);	
+		return combinedMap;
+		
 	}
 
 	/*
@@ -199,7 +397,39 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> last2Revisited(String[] words) {
-		return null;
-	}
+		
+		Map <String, Integer> repetitionOfLastTwo = new HashMap <String, Integer>();
+		
+		Integer wordRepCount = 1;
+		Integer placeHolder = 0;
+		
+		for (String arrayValue : words) {
+			
+			if (arrayValue.length() < 2) {
+				
+				 repetitionOfLastTwo.put(arrayValue, wordRepCount);
+				 
+				 return repetitionOfLastTwo;
+			}
+			
+			String lengthEnd = arrayValue.substring(arrayValue.length() - 2);
+			
+			String sub = arrayValue.substring(placeHolder, placeHolder + 2);
+			
+			if (sub.equals(lengthEnd)) {
+				
+				wordRepCount ++;
 
+				repetitionOfLastTwo.put(arrayValue, wordRepCount);
+				
+				System.out.println(repetitionOfLastTwo);
+			}
+			
+		}
+		
+		System.out.print(repetitionOfLastTwo);
+		
+		return repetitionOfLastTwo;
+	}
+		
 }

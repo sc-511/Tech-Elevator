@@ -251,6 +251,7 @@ public class Exercises {
 				
 				mixOfBothArrays.add(listTwo.get(i));
 			}
+			
 			for (int i = listOne.size(); i < listTwo.size(); i++) {
 				
 				mixOfBothArrays.add(listTwo.get(i));
@@ -278,6 +279,7 @@ public class Exercises {
 				mixOfBothArrays.add(listOne.get(i));
 				
 				mixOfBothArrays.add(listTwo.get(i));
+				
 				}
 			
 			}

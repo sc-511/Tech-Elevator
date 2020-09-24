@@ -74,36 +74,36 @@ public class Lecture {
 		}
 	}
 	
-	public static void main(String[] args) {
-		
-		System.out.println(firstRepeatingCharacter("Elevate Yourself"));
-	}
-	
-	public static String firstRepeatingCharacter(String input) {
-		
-		Set <String> seenThisLetter = new HashSet <String>();
-		
-		for (int i = 0; i < input.length(); i++) {
-			
-			String thisLetter = input.substring (i, i+1);
-			
-			if (seenThisLetter.contains(thisLetter)) {
-				return thisLetter;
-			}
-			
-				seenThisLetter.add(thisLetter);
-			
-			
-//			int sizeBefore = seenThisLetter.size();
-//			seenThisLetter.add(thisLetter);
-//			int sizeAfter = seenThisLetter.size();
+//	public static void main(String[] args) {
+//		
+//		System.out.println(firstRepeatingCharacter("Elevate Yourself"));
+//	}
+//	
+//	public static String firstRepeatingCharacter(String input) {
+//		
+//		Set <String> seenThisLetter = new HashSet <String>();
+//		
+//		for (int i = 0; i < input.length(); i++) {
 //			
-//			if (sizeBefore == sizeAfter) {
+//			String thisLetter = input.substring (i, i+1);
+//			
+//			if (seenThisLetter.contains(thisLetter)) {
 //				return thisLetter;
 //			}
-		}
-		
-		return "";
+//			
+//				seenThisLetter.add(thisLetter);
+//			
+//			
+////			int sizeBefore = seenThisLetter.size();
+////			seenThisLetter.add(thisLetter);
+////			int sizeAfter = seenThisLetter.size();
+////			
+////			if (sizeBefore == sizeAfter) {
+////				return thisLetter;
+////			}
+//		}
+//		
+//		return "";
 	}
 
-}
+
