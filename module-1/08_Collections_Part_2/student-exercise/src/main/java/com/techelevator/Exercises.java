@@ -398,38 +398,29 @@ public class Exercises {
 	 */
 	public Map<String, Integer> last2Revisited(String[] words) {
 		
-		Map <String, Integer> repetitionOfLastTwo = new HashMap <String, Integer>();
-		
-		Integer wordRepCount = 1;
-		Integer placeHolder = 0;
-		
-		for (String arrayValue : words) {
-			
-			if (arrayValue.length() < 2) {
-				
-				 repetitionOfLastTwo.put(arrayValue, wordRepCount);
-				 
-				 return repetitionOfLastTwo;
-			}
-			
-			String lengthEnd = arrayValue.substring(arrayValue.length() - 2);
-			
-			String sub = arrayValue.substring(placeHolder, placeHolder + 2);
-			
-			if (sub.equals(lengthEnd)) {
-				
-				wordRepCount ++;
+		Map <String, Integer> finalMap = new HashMap<String, Integer>();
 
-				repetitionOfLastTwo.put(arrayValue, wordRepCount);
-				
-				System.out.println(repetitionOfLastTwo);
-			}
-			
-		}
-		
-		System.out.print(repetitionOfLastTwo);
-		
-		return repetitionOfLastTwo;
-	}
+        for ( int i = 0; i < words.length; i++) {
+        	
+            String lastTwo = words[i].substring(words[i].length() - 2);
+
+            int counter = 0;
+
+            for ( int j = 0; j < words[i].length() - 2; j++) {
+            	
+                String toTest = words[i].substring(j, j + 2);
+
+                if (lastTwo.equals(toTest)) {
+                	
+                    counter = counter + 1;
+                }
+            }
+            
+            finalMap.put(words[i], counter);
+
+        }
+
+        return finalMap;
+    }
 		
 }
