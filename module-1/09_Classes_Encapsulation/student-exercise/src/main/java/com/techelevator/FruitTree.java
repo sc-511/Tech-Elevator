@@ -3,14 +3,14 @@ package com.techelevator;
 public class FruitTree {
 	
 	private String typeOfFruit;
+
 	private int piecesOfFruitLeft;
-	private int startingPiecesOfFruit;
 	
 	public FruitTree (String typeOfFruit, int startingPiecesOfFruit) {
 		
 		this.typeOfFruit = typeOfFruit;
 		
-		this.startingPiecesOfFruit = startingPiecesOfFruit;
+		this.piecesOfFruitLeft = startingPiecesOfFruit;
 		
 	}
 		
@@ -21,34 +21,29 @@ public class FruitTree {
 		
 		return typeOfFruit;
 	}
-
+	
 	public int getPiecesOfFruitLeft() {
-		
-		return piecesOfFruitLeft;
+		return piecesOfFruitLeft ;
 	}
+
+
 	
 	public boolean pickFruit (int numberOfPiecesToRemove) {
 		
-		if (startingPiecesOfFruit > 0 && startingPiecesOfFruit > numberOfPiecesToRemove) {
-				
-			piecesOfFruitLeft = startingPiecesOfFruit - numberOfPiecesToRemove;
+		if (numberOfPiecesToRemove <= piecesOfFruitLeft) {
+			
+			piecesOfFruitLeft -= numberOfPiecesToRemove;
+			
 			return true;
-			
-			}
-			
-		else if (startingPiecesOfFruit > 0 && startingPiecesOfFruit < numberOfPiecesToRemove) {	
-			
-			piecesOfFruitLeft = startingPiecesOfFruit;
-			return true;
-				
 		}
 		else {
 			return false;
 		}
+		
+		
+		
 			
-			
-	
-			
-				
+		
 		}
+
 }

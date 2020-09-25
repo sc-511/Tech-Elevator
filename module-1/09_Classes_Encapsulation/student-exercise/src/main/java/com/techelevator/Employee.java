@@ -10,7 +10,10 @@ public class Employee {
 	
 	public Employee(int employeeId, String firstName, String lastName, double Salary ) {
 		
-		
+		this.employeeId = employeeId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.annualSalary = Salary;
 		
 	}
 	
@@ -45,6 +48,13 @@ public class Employee {
 	public String getFullName() {
 		
 		return this.lastName + ", " +  this.firstName;
+		
+	}
+	
+	public void raiseSalary (double percent) {
+		
+		percent = percent / 100;
+		annualSalary = (percent * annualSalary) + annualSalary;
 		
 	}
 	
