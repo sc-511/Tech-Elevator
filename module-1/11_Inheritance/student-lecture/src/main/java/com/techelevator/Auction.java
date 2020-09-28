@@ -30,7 +30,7 @@ public class Auction {
 	}
 
 	public List<Bid> getAllBids() {
-		return new ArrayList<>(allBids);
+		return new ArrayList<>(allBids); // --> having allbids in the parameter allows a copy of allbids be made. Without modifcations to the list being made.
 	}
 
 	public String getItemForSale() {
