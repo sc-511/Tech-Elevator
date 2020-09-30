@@ -52,7 +52,7 @@ import java.util.TreeMap;
                     int sideLength = Integer.parseInt(userInput.nextLine());
 
                     // Step Three:
-                    //newWall = new SquareWall(name, color, sideLength);
+                    newWall = new SquareWall(name, color, sideLength);
                 } else if (shapeChoice.equals("3")) {
                     System.out.println("Enter wall height >>> ");
                     int height = Integer.parseInt(userInput.nextLine());
