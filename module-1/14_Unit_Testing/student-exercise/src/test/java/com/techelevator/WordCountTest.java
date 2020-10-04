@@ -19,7 +19,9 @@ public class WordCountTest {
 		holder.put("ba", 2);
 		holder.put("black", 1);
 		holder.put("sheep", 1);
-		assertEquals(new HashMap <String, Integer> (), holder);
+		
+		Map<String, Integer> actual = a.getCount(new String[] {"ba", "ba", "black", "sheep"});
+		Assert.assertEquals(actual, holder);
 	}
 	
 	@Test
@@ -30,7 +32,9 @@ public class WordCountTest {
 		holder.put("a", 2);
 		holder.put("b", 2);
 		holder.put("c", 1); 
-		assertEquals(new HashMap <String, Integer> (), holder);
+		
+		Map<String,Integer> actual = a.getCount(new String[] {"a", "a", "b", "b", "c"} );
+		Assert.assertEquals(actual, holder);
 	}
 	
 	@Test
@@ -49,7 +53,9 @@ public class WordCountTest {
 		holder.put("a", 1);
 		holder.put("b", 1);
 		holder.put("c", 1);
-		assertEquals(new HashMap <String, Integer> (), holder.get(a));
+		
+		Map<String, Integer> actual = a.getCount(new String[] {"c", "b", "a"});
+		Assert.assertEquals(actual, holder);
 		
 	}
 }
