@@ -35,10 +35,10 @@ public class WordSearch {
 					
 					String wordSentence = fileScanner.nextLine();
 					
-					if (wordSentence.contains(" " + wordSearch + " "))
+					if (wordSentence.contains(" " + wordSearch + " ")) {
 					
 					System.out.println("(" + sentenceLine + ")" + " " + wordSentence);
-					
+					}
 				}
 			}
 			
@@ -58,15 +58,25 @@ public class WordSearch {
 				while(fileScanner.hasNextLine()) {
 					
 					sentenceLine++;
+					
+					String wordSearchCap = wordSearch.substring(0,1).toUpperCase() + wordSearch.substring(1);
 				
 					String wordSentence = fileScanner.nextLine();
 					
-					if (wordSentence.contains(" " + wordSearch.substring(0,1).toLowerCase() + " ") || wordSentence.contains(" " + wordSearch.substring(0,1).toUpperCase() + " ")) {
+					
+					if (wordSentence.contains((" " + wordSearch+ " "))) {
 					
 					System.out.println("(" + sentenceLine + ")" + " " + wordSentence);
 					
 					}
-				
+					
+					if (wordSentence.contains((" " + wordSearchCap + " "))) {
+						
+					System.out.println("(" + sentenceLine + ")" + " " + wordSentence);
+					
+					}
+					
+					
 				}
 			
 			}
