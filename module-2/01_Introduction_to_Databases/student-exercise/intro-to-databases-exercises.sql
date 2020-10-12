@@ -30,7 +30,7 @@
 -- 11. The name and region of all countries in North or South America (51 rows)
         select name, region from country where continent = 'North America' OR continent = 'South America';
 -- 12. The name, continent, and head of state of all countries whose form of government is a monarchy (43 rows)
-        select name, continent, headofstate from country where governmentform = 'Monarchy';
+        select name, continent, headofstate from country where governmentform LIKE '%Monarchy%';
 -- 13. The name of all cities in the USA with a population between 1 million and 2 million people (6 rows) 
         select name from city where countrycode = 'USA' AND population between 1000000 AND 2000000;
 -- 14. The name and region of all countries in North or South America except for countries in the Caribbean (27 rows)
