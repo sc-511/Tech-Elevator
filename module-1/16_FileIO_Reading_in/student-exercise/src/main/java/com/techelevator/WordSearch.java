@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class WordSearch {
 
 	public static void main(String[] args) {
+		
 	
 		System.out.println("What is the file that should be searched?");
 		
