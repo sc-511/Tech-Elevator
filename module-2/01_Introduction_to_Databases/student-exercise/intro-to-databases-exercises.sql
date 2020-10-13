@@ -6,7 +6,7 @@
 
 -- 1. The name and population of all cities in Ontario, Canada (27 rows)
 
-        SELECT name, population From city Where district = 'Ontario' ;
+        SELECT name, population From city Where  countrycode = 'CAN' AND district = 'Ontario' ;
 
 -- 2. The name and population of all cities in Montana (1 row)
         SELECT name, population FROM city Where district = 'Montana';
