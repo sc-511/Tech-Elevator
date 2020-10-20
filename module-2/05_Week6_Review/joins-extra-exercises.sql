@@ -3,25 +3,61 @@
 
 -- 1. The city name, country name, and city population of all cities in Europe with population greater than 1 million
 -- (36 rows)
-
+        SELECT *
+        FROM city;
+        
+        SELECT city.name, country.name,city.population
+        FROM city
+        JOIN country ON city.countrycode = country.code
+        WHERE continent = 'Europe' AND city.population > 1000000
+        ;
+        
 -- 2. The city name, country name, and city population of all cities in countries where French is an official language and the city population is greater than 1 million
 -- (2 rows)
-
+        
+        
+        
+        SELECT city.name, country.name,city.population
+        FROM city
+        JOIN country ON city.countrycode = country.code
+        JOIN countrylanguage USING (countrycode)
+        WHERE countrylanguage.language = 'French' AND city.population > 1000000 AND countrylanguage.isofficial = true
+        ;
+        
+        
 -- 3. The name of the countries and continents where the language Javanese is spoken
 -- (1 row)
-
+        
+        SELECT country.name, country.continent
+        FROM countrylanguage
+        INNER JOIN country ON country.code = countrylanguage.countrycode
+        WHERE language = 'Javanese'
+        ;
+        
 -- 4. The names of all of the countries in Africa that speak French as an official language
 -- (5 row)
+        
+        SELECT country.name
+        FROM country
+        JOIN country ON city.countrycode = country.code
+        JOIN countrylanguage USING (countrycode)
+        WHERE countrylanguage.language = 'French' AND city.population > 1000000 AND countrylanguage.isofficial = true AND contient = 'Africa'
+        ;
 
 -- 5. The average city population of cities in Europe
 -- (average city population in Europe: 287,684)
-
+        
+        SELECT AVG(city.population)
+        FROM city
+        INNER JOIN country ON city.countrycode = country.code
+        WHERE country.continent = 'Europe'
+        ;
 -- 6. The average city population of cities in Asia
 -- (average city population in Asia: 395,019)
-
+        
 -- 7. The number of cities in countries where English is an official language
 -- (number of cities where English is official language: 523)
-
+        
 -- 8. The average population of cities in countries where the official language is English
 -- (average population of cities where English is official language: 285,809)
 

@@ -176,6 +176,11 @@
 -- describe any remaining adjustments needed before the film "Euclidean PI" can
 -- be removed from the film table.
         --Euclidean Pi would have to be removed from film_actor first in order to be removed from film that way film_id in film_actor becomes a primary key which would then allow it to be deleted. Such as:
+        
+        SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS;
+        SELECT * FROM INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE;
+        SELECT * FROM INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS;
+        
         DELETE
         FROM film_actor
         WHERE film_id = 1001
