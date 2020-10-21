@@ -13,7 +13,8 @@ public interface ProjectDAO {
 	 * @return all active projects as Project objects in a List
 	 */
 	public List<Project> getAllActiveProjects();
-
+		
+	
 	/**
 	 * Unassign the employee from a project.
 	 * 
@@ -22,6 +23,8 @@ public interface ProjectDAO {
 	 */
 	public void removeEmployeeFromProject(Long projectId, Long employeeId);
 
+	
+	
 	/**
 	 * Assign an employee to a project
 	 * 
