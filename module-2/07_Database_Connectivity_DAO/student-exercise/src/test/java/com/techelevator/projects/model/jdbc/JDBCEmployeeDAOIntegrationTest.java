@@ -18,12 +18,12 @@ import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 import com.techelevator.projects.model.Employee;
 
 public class JDBCEmployeeDAOIntegrationTest {
-	private  SingleConnectionDataSource dataSource;
+	private static  SingleConnectionDataSource dataSource;
 	private JDBCEmployeeDAO dao;
 	
 		@BeforeClass
-		public void setupDataSource() {
-			SingleConnectionDataSource dataSource = new SingleConnectionDataSource();
+		public static void setupDataSource() {
+			dataSource = new SingleConnectionDataSource();
 			dataSource.setUrl("jdbc:postgresql://localhost:5432/projects");
 			dataSource.setUsername("postgres");
 			dataSource.setPassword("postgres1");
@@ -32,7 +32,7 @@ public class JDBCEmployeeDAOIntegrationTest {
 		}
 		
 		@Before
-		public void setup() {
+		public  void setup() {
 			dao = new JDBCEmployeeDAO(dataSource);
 		}
 		
@@ -40,7 +40,7 @@ public class JDBCEmployeeDAOIntegrationTest {
 		@Test
 		public void getEmployeesByDepartmentId_is_empty_for_invalid_department() {
 			//Act
-			List <Employee> employeesInRD = dao.getEmployeesByDepartmentId(-1L);
+			List <Employee> employeesInRD = dao.getEmployeesByDepartmentId(1L);
 			
 			//Assert
 			Assert.assertNull(employeesInRD);
@@ -89,6 +89,12 @@ public class JDBCEmployeeDAOIntegrationTest {
 			Assert.assertEquals(10, employeesInRD.size());
 		}
 		
+		@Test 
+		public void getEmployeesByProjectId_gets_list_of_employees_on_project() {
+			List <Employee> employeesOnProject = dao.getEmployeesByProjectId(2L);
+			
+		}
+		
 		
 		
 		
@@ -100,7 +106,7 @@ public class JDBCEmployeeDAOIntegrationTest {
 		}
 		
 		@AfterClass
-		public void destroyDataSource() {
+		public static void destroyDataSource() {
 			dataSource.destroy();
 		}
 }
