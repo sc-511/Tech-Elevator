@@ -7,6 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import com.techelevator.projects.model.Employee;
 import com.techelevator.projects.model.EmployeeDAO;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class JDBCEmployeeDAO implements EmployeeDAO {
 
@@ -19,7 +22,7 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 	@Override
 	public List<Employee> getAllEmployees() {
 		List <Employee> employees = new ArrayList<>();
-		String sqlFindAllEmployees = "SELECT employee_id, department_id, first_name, last_name FROM employee";
+		String sqlFindAllEmployees = "SELECT employee_id, department_id, first_name, last_name, birth_date, gender, hire_date FROM employee";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindAllEmployees);
 		while(results.next()) {
 			
@@ -72,7 +75,7 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 	@Override //cannot figure out error.. everything else works -> project/employee
 	public List<Employee> getEmployeesByProjectId(Long projectId) {
 		List <Employee> employees = new ArrayList<>();
-		String sqlFindAllEmployees = "SELECT employee_id, first_name,last_name FROM employee LEFT JOIN project_employee USING (employee_id) WHERE project_id = ?";
+		String sqlFindAllEmployees = "SELECT employee_id, department_id, first_name,last_name FROM employee LEFT JOIN project_employee USING (employee_id) WHERE project_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindAllEmployees, projectId);
 		while(results.next()) {
 			
@@ -95,6 +98,9 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 		theEmployee.setDepartmentId(results.getLong("department_id"));
 		theEmployee.setFirstName(results.getString("first_name"));
 		theEmployee.setLastName(results.getString("last_name"));
+//		theEmployee.setGender(results.getString("gender"));
+//		theEmpoyee.setHireDate(results.getDate("birth_date"));
+//		theEmployee.setBirthDay(results.getDate("hire_date"));
 		return theEmployee;
 	}
 
