@@ -21,6 +21,8 @@ public class JDBCEmployeeDAOIntegrationTest {
 	private static final Long TEST_EMPLOYEEID = 100L;
 	private static  SingleConnectionDataSource dataSource;
 	private JDBCEmployeeDAO dao;
+	private JDBCDepartmentDAO dep;
+	
 	
 		@BeforeClass
 		public static void setupDataSource() {
@@ -44,10 +46,10 @@ public class JDBCEmployeeDAOIntegrationTest {
 		@Test
 		public void getEmployeesByDepartmentId_is_empty_for_invalid_department() {
 			//Act
-			List <Employee> employeesInRD = dao.getEmployeesByDepartmentId(1L);
+			List <Employee> employeesInRD = dao.getEmployeesByDepartmentId(-1L);
 			
 			//Assert
-			Assert.assertNull(employeesInRD);
+			Assert.assertEquals(0,employeesInRD.size());
 		}
 		
 		@Test
@@ -57,7 +59,7 @@ public class JDBCEmployeeDAOIntegrationTest {
 			
 			Employee employeeOne = dao.getAllEmployees().get(0);
 			Long employeeOneDepartmentId = employeeOne.getDepartmentId();
-			Long newDepartmentId = -1L;
+			Long newDepartmentId = 1L;
 			
 			
 			//Act
@@ -76,23 +78,24 @@ public class JDBCEmployeeDAOIntegrationTest {
 		
 		@Test
 		public void getEmployeesByDepartmentId() {
-//			Employee theEmployee = getEmployee(TEST_EMPLOYEEID, 2L, "Jerome", "Bettis",  'M', LocalDate.of(1979, 8, 24), LocalDate.of(1990, 02, 19));
-//			List<Employee> results = dao.getEmployeesByDepartmentId(TEST_EMPLOYEEID);
-//			Assert.assertNotNull(results);
-//			Assert.assertEquals(1, results.size());
-//			assertEmployeeIdAreEqual(theEmployee, results.get(0));
-			
+		List <Employee> before = dao.getAllEmployees();
+		List<Employee> listOfEmploy	= dao.getEmployeesByDepartmentId(4L);
+		Assert.assertNotNull(listOfEmploy);
+		Assert.assertNotEquals(before.size(), listOfEmploy.size());
 		}
 		
 		@Test 
 		public void getEmployeesByProjectId_gets_list_of_employees_on_project() {
-			List <Employee> employeesOnProject = dao.getEmployeesByProjectId(2L);
+			List <Employee> employeesOnProject = dao.getEmployeesByProjectId(6L);
+			Assert.assertEquals(3, employeesOnProject.size());
 			
 		}
 		
 		@Test
 		public void getEmployeesByNoProjectId () {
-			 
+			List<Employee> before = dao.getAllEmployees();
+			List <Employee> after= dao.getEmployeesWithoutProjects();
+			Assert.assertNotEquals(before.size(), after.size()); 
 		}
 
 		
