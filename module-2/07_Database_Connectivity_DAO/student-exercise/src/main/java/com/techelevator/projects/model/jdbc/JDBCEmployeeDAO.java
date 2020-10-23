@@ -56,6 +56,7 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 			Employee theEmployee = mapRowToEmployee(results);
 			employees.add(theEmployee);
 		}
+		
 		return employees;
 	}
 

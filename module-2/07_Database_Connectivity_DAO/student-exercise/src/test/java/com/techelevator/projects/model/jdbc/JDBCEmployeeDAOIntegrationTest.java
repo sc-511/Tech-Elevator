@@ -14,6 +14,7 @@ import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import com.techelevator.projects.model.Employee;
 
@@ -22,6 +23,7 @@ public class JDBCEmployeeDAOIntegrationTest {
 	private static  SingleConnectionDataSource dataSource;
 	private JDBCEmployeeDAO dao;
 	private JDBCDepartmentDAO dep;
+	private JdbcTemplate jdbc;
 	
 	
 		@BeforeClass
@@ -78,10 +80,18 @@ public class JDBCEmployeeDAOIntegrationTest {
 		
 		@Test
 		public void getEmployeesByDepartmentId() {
-		List <Employee> before = dao.getAllEmployees();
-		List<Employee> listOfEmploy	= dao.getEmployeesByDepartmentId(4L);
-		Assert.assertNotNull(listOfEmploy);
-		Assert.assertNotEquals(before.size(), listOfEmploy.size());
+		List<Employee> allEmployees = dao.getAllEmployees();
+		String sqlDummyDep = "INSERT INTO department (department_id, name) VALUES (DEFAULT, 'TESTTEST') RETURNING department_id";
+		SqlRowSet returnId = jdbc.queryForRowSet(sqlDummyDep);
+		returnId.next();
+		long dummyId = returnId.getLong("department_id");
+		
+		String sqlInsertEmployee = "INSERT INTO employee (employee_id, department_id, first_name, last_name, birth_date, gender, hire_date) VALUES (DEFAULT, ?, 'dummy', 'dum', '1980-07-14', 'M', '1980-07-14')";
+		jdbc.update(sqlInsertEmployee, dummyId);
+		
+		List<Employee> listOfEmployees = dao.getEmployeesByDepartmentId(dummyId);
+		Assert.assertNotNull(listOfEmployees);
+		Assert.assertNotEquals(allEmployees.size(), listOfEmployees.size());
 		}
 		
 		@Test 
