@@ -18,6 +18,7 @@ import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 import com.techelevator.projects.model.Employee;
 
 public class JDBCEmployeeDAOIntegrationTest {
+	private static final Long TEST_EMPLOYEEID = 100L;
 	private static  SingleConnectionDataSource dataSource;
 	private JDBCEmployeeDAO dao;
 	
@@ -33,6 +34,9 @@ public class JDBCEmployeeDAOIntegrationTest {
 		
 		@Before
 		public  void setup() {
+			String sqlInsertEmployee = "INSERT INTO employee (employee_id, department_id, first_name, last_name, gender, birth_date, hire_date) VALUES (?, '4', 'Shane', 'Craig',  'M', '1999-06-05', '2020-09-14')"; 
+			JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+			jdbcTemplate.update(sqlInsertEmployee, TEST_EMPLOYEEID);
 			dao = new JDBCEmployeeDAO(dataSource);
 		}
 		
@@ -71,22 +75,13 @@ public class JDBCEmployeeDAOIntegrationTest {
 		}
 		
 		@Test
-		public void getEmployeesByDepartmentId_gets_list_of_employees_for_r_and_d() {
-			//Arrange
-//			Employee employee = new Employee();
-//			employee.setFirstName("Shane");
-//			employee.setLastName("Craig");
-//			employee.setBirthDay(LocalDate.of(2000, 10, 21));
-//			employee.setHireDate(LocalDate.of(2020, 1, 6));
-//			employee.setGender('M');
-//			employee.setDepartmentId(100L);
+		public void getEmployeesByDepartmentId() {
+//			Employee theEmployee = getEmployee(TEST_EMPLOYEEID, 2L, "Jerome", "Bettis",  'M', LocalDate.of(1979, 8, 24), LocalDate.of(1990, 02, 19));
+//			List<Employee> results = dao.getEmployeesByDepartmentId(TEST_EMPLOYEEID);
+//			Assert.assertNotNull(results);
+//			Assert.assertEquals(1, results.size());
+//			assertEmployeeIdAreEqual(theEmployee, results.get(0));
 			
-			//Act
-			List <Employee> employeesInRD = dao.getEmployeesByDepartmentId(3L);
-			
-			//Assert
-			Assert.assertNotNull(employeesInRD);
-			Assert.assertEquals(10, employeesInRD.size());
 		}
 		
 		@Test 
@@ -95,10 +90,11 @@ public class JDBCEmployeeDAOIntegrationTest {
 			
 		}
 		
-		
-		
-		
-		
+		@Test
+		public void getEmployeesByNoProjectId () {
+			 
+		}
+
 		
 		@After
 		public void rollback() throws SQLException {
@@ -108,5 +104,28 @@ public class JDBCEmployeeDAOIntegrationTest {
 		@AfterClass
 		public static void destroyDataSource() {
 			dataSource.destroy();
+		}
+		
+		private Employee getDepartment(Long employee_id, Long departmentid, String firstName, String lastName, char gender, LocalDate birthday, LocalDate hireDate) {
+			Employee theEmployee = new Employee();
+			theEmployee.setId(employee_id);
+			theEmployee.setDepartmentId(departmentid);
+			theEmployee.setFirstName(firstName);
+			theEmployee.setLastName(lastName);
+			theEmployee.setGender(gender);
+			theEmployee.setBirthDay(birthday);
+			theEmployee.setHireDate(hireDate);
+			return theEmployee;
+		}
+		
+		private void assertDepartmentIdAreEqual(Employee expected, Employee actual) {
+			Assert.assertEquals(expected.getId(), actual.getId());
+			Assert.assertEquals(expected.getDepartmentId(), actual.getDepartmentId());
+			Assert.assertEquals(expected.getFirstName(), actual.getFirstName());
+			Assert.assertEquals(expected.getLastName(), actual.getLastName());
+			Assert.assertEquals(expected.getGender(), actual.getGender());
+			Assert.assertEquals(expected.getBirthDay(), actual.getBirthDay());
+			Assert.assertEquals(expected.getHireDate(), actual.getHireDate());
+
 		}
 }
