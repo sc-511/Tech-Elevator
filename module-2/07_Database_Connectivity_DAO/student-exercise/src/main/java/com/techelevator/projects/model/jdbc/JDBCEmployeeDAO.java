@@ -49,7 +49,7 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 	@Override
 	public List<Employee> getEmployeesByDepartmentId(long id) {
 		List <Employee> employees = new ArrayList<>();
-		String sqlFindAllEmployees = "SELECT first_name, last_name FROM employee WHERE department_id = ?";
+		String sqlFindAllEmployees = "SELECT employee_id, department_id, first_name, last_name FROM employee WHERE department_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindAllEmployees, id);
 		while(results.next()) {
 			
@@ -73,10 +73,10 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 		return employees;
 	}
 
-	@Override //cannot figure out error.. everything else works -> project/employee
+	@Override 
 	public List<Employee> getEmployeesByProjectId(Long projectId) {
 		List <Employee> employees = new ArrayList<>();
-		String sqlFindAllEmployees = "SELECT employee_id, department_id, first_name,last_name FROM employee LEFT JOIN project_employee USING (employee_id) WHERE project_id = ?";
+		String sqlFindAllEmployees = "SELECT employee_id, department_id, first_name,last_name FROM employee LEFT JOIN project_employee USING (employee_id) WHERE project_employee.project_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindAllEmployees, projectId);
 		while(results.next()) {
 			

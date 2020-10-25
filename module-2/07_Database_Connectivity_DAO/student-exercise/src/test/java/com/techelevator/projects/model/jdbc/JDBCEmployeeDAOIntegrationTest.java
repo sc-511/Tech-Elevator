@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import com.techelevator.projects.model.Department;
 import com.techelevator.projects.model.Employee;
 
 public class JDBCEmployeeDAOIntegrationTest {
@@ -42,6 +43,7 @@ public class JDBCEmployeeDAOIntegrationTest {
 			JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 			jdbcTemplate.update(sqlInsertEmployee, TEST_EMPLOYEEID);
 			dao = new JDBCEmployeeDAO(dataSource);
+			
 		}
 		
 		
@@ -58,7 +60,6 @@ public class JDBCEmployeeDAOIntegrationTest {
 		public void changeEmployeeDepartment_moves_employee_to_store_support() {
 			//Arrange
 			List <Employee> allEmployees = dao.getAllEmployees();
-			
 			Employee employeeOne = dao.getAllEmployees().get(0);
 			Long employeeOneDepartmentId = employeeOne.getDepartmentId();
 			Long newDepartmentId = 1L;
@@ -66,38 +67,41 @@ public class JDBCEmployeeDAOIntegrationTest {
 			
 			//Act
 			dao.changeEmployeeDepartment(employeeOne.getId(), newDepartmentId);
-			
 			List <Employee> employeesInNewDepartment = dao.getEmployeesByDepartmentId(newDepartmentId);
 			
 			//Assert
 			Assert.assertNotNull(employeesInNewDepartment);
 			Assert.assertEquals(1, employeesInNewDepartment.size());
-			
 			Employee employeeOneInNewDepartment = employeesInNewDepartment.get(0);
-			
+			Assert.assertNotNull(employeeOneInNewDepartment);
 			Assert.assertEquals(employeeOne.getFirstName(), employeeOneInNewDepartment.getFirstName());
 		}
 		
+		
+		
 		@Test
 		public void getEmployeesByDepartmentId() {
-		List<Employee> allEmployees = dao.getAllEmployees();
-		String sqlDummyDep = "INSERT INTO department (department_id, name) VALUES (DEFAULT, 'TESTTEST') RETURNING department_id";
-		SqlRowSet returnId = jdbc.queryForRowSet(sqlDummyDep);
-		returnId.next();
-		long dummyId = returnId.getLong("department_id");
+			Department dummyDep = new Department();
+			dummyDep.setName("FAKE");
+			dep.createDepartment(dummyDep);
+			long DepId = dummyDep.getId();
+			Assert.assertNotNull(DepId);
+			String sql = "INSERT INTO employee (employee_id, department_id, first_name, last_name, birth_date, gender, hire_date)" +
+			 	     		"VALUES (DEFAULT, ?, 'FAKE', 'DUDE', '1990-01-01', 'M', '2018-01-01')";
+			jdbc.update(sql, DepId);
+			List<Employee> theEmployees = dao.getEmployeesByDepartmentId(DepId);
+			Assert.assertNotNull(theEmployees);
+			Assert.assertEquals(1, theEmployees.size());
 		
-		String sqlInsertEmployee = "INSERT INTO employee (employee_id, department_id, first_name, last_name, birth_date, gender, hire_date) VALUES (DEFAULT, ?, 'dummy', 'dum', '1980-07-14', 'M', '1980-07-14')";
-		jdbc.update(sqlInsertEmployee, dummyId);
-		
-		List<Employee> listOfEmployees = dao.getEmployeesByDepartmentId(dummyId);
-		Assert.assertNotNull(listOfEmployees);
-		Assert.assertNotEquals(allEmployees.size(), listOfEmployees.size());
 		}
+		
 		
 		@Test 
 		public void getEmployeesByProjectId_gets_list_of_employees_on_project() {
+			dao.getEmployeesByProjectId(6L);
+			Assert.assertNotNull(dao.getEmployeesByProjectId(6L));
 			List <Employee> employeesOnProject = dao.getEmployeesByProjectId(6L);
-			Assert.assertEquals(3, employeesOnProject.size());
+			Assert.assertEquals(3, dao.getEmployeesByProjectId(6L).size());
 			
 		}
 		
@@ -119,26 +123,7 @@ public class JDBCEmployeeDAOIntegrationTest {
 			dataSource.destroy();
 		}
 		
-		private Employee getDepartment(Long employee_id, Long departmentid, String firstName, String lastName, char gender, LocalDate birthday, LocalDate hireDate) {
-			Employee theEmployee = new Employee();
-			theEmployee.setId(employee_id);
-			theEmployee.setDepartmentId(departmentid);
-			theEmployee.setFirstName(firstName);
-			theEmployee.setLastName(lastName);
-			theEmployee.setGender(gender);
-			theEmployee.setBirthDay(birthday);
-			theEmployee.setHireDate(hireDate);
-			return theEmployee;
-		}
-		
-		private void assertDepartmentIdAreEqual(Employee expected, Employee actual) {
-			Assert.assertEquals(expected.getId(), actual.getId());
-			Assert.assertEquals(expected.getDepartmentId(), actual.getDepartmentId());
-			Assert.assertEquals(expected.getFirstName(), actual.getFirstName());
-			Assert.assertEquals(expected.getLastName(), actual.getLastName());
-			Assert.assertEquals(expected.getGender(), actual.getGender());
-			Assert.assertEquals(expected.getBirthDay(), actual.getBirthDay());
-			Assert.assertEquals(expected.getHireDate(), actual.getHireDate());
+	
 
 		}
-}
+
