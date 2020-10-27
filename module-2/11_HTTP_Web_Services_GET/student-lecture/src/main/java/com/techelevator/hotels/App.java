@@ -1,5 +1,7 @@
 package com.techelevator.hotels;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.web.client.RestTemplate;
@@ -25,15 +27,31 @@ public class App {
             }
             System.out.println("");
             if (menuSelection == 1) {
-                System.out.println("Not implemented");
+            	
+            	Hotel[] arrayOfHotels = getListOfHotels();
+            	printHotels(arrayOfHotels);
+                
             } else if (menuSelection == 2) {
-                System.out.println("Not implemented");
+            	
+            	Review [] arrayOfReviews = getArrayOfReviews();
+            	printReviews(arrayOfReviews);
+                
             } else if (menuSelection == 3) {
-                System.out.println("Not implemented");
+            	
+            	
+                Hotel thisSpecificHotel = getHotel(1);
+                printHotel(thisSpecificHotel);
+                
             } else if (menuSelection == 4) {
-                System.out.println("Not implemented");
+                
+            	Review[] thisSpecificReview = getArrayOfReviews(1);
+            	printReviews(thisSpecificReview);
+            	
             } else if (menuSelection == 5) {
-                System.out.println("Not implemented");
+            	
+                Hotel [] hotelsWith3Stars = getArrayOfHotelsByRating(3);
+                printHotels(hotelsWith3Stars);
+                
             } else if (menuSelection == 6) {
                 System.out.println("Not implemented - Create a custom Web API query here");
             } else if (menuSelection == 0) {
@@ -82,5 +100,55 @@ public class App {
             System.out.println(review.toString());
         }
     }
+    
+    private static Hotel[] getListOfHotels(){
+  
+    	//call the api
+    	RestTemplate restTemplate = new RestTemplate();
+    	Hotel[] deserializedHotelObjects = restTemplate.getForObject("http://localhost:3000/hotels", Hotel[].class);
+    	
+    	// deserialize the response into Hotel Objects
+    	
+    	return deserializedHotelObjects;
+    }
+    
+    private static Review[] getArrayOfReviews() {
+    	RestTemplate restTemplate = new RestTemplate();
+    	Review[] deserializedReviewObjects = restTemplate.getForObject("http://localhost:3000/reviews", Review[].class);
+    	return deserializedReviewObjects;
+    }
+    
+    private static Hotel getHotel(int hotelId) {
+    	RestTemplate restTemplate = new RestTemplate();
+    	Hotel h = restTemplate .getForObject("http://localhost:3000/hotels/" + hotelId, Hotel.class);
+    	return h;
+    }
+    
+    private static Review[] getArrayOfReviews(int hotelId) {
+    	RestTemplate restTemplate = new RestTemplate();
+    	Review[] output = restTemplate.getForObject("http://localhost:3000/reviews/?hotelID=" + hotelId, Review[].class);
+    	return output;
+    }
+    
+    private static Hotel[] getArrayOfHotelsByRating(int starRating) {
+    	RestTemplate restTemplate = new RestTemplate();
+    	Hotel[] output = restTemplate.getForObject("http://localhost:3000/hotels/?stars=" + starRating, Hotel[].class);
+    	return output;
+    	
+    	/* 
+    	 * List <Hotel> list = new ArrayList <> ();
+    	 * Hotel[] allHotels = getArrayOfHotels(){
+    	 * for (Hotel h : allHotels) {
+    	 * if(h.getStars() = 3) {
+    	 * 			list.add(h);}
+    	 * 		}
+    	 * 	Hotel[] threeStarHotels = new Hotel[list.size()];
+    	 * 	for (int i = 0; i < threeStarHotels.length; size++)j{
+    	 * 	
+    	 * 	return threeStarHotels;
+    	 * 	}
+    	 */
+    }
+    
 
 }
