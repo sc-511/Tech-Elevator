@@ -54,7 +54,13 @@ public class HotelService {
     headers.setContentType(MediaType.APPLICATION_JSON);
     HttpEntity<Reservation> res = new HttpEntity<>(updatedReservation, headers);
     
+    try {
     restTemplate.put(url, res);
+    } catch(RestClientResponseException rcre) {
+    	console.printError(rcre.getRawStatusCode() + " Occured!");
+    }catch (ResourceAccessException rae) {
+    	console.printError("System is DOWN!");
+    }
     return updatedReservation;
   }
 

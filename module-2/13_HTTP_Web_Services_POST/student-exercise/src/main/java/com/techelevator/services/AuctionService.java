@@ -68,18 +68,57 @@ public class AuctionService {
     }
 
     public Auction add(String auctionString) {
-        // place code here
-        return null;
+        Auction newJavaAuction = makeAuction(auctionString);
+        String url = BASE_URL ;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Auction> request = new HttpEntity<>(newJavaAuction, headers);
+        Auction finalAuction = new Auction();
+        try {
+        	finalAuction = restTemplate.postForObject(url, request, Auction.class);
+        } catch (RestClientResponseException rcre) {
+        	console.printError(rcre.getRawStatusCode() + "Occured!");
+        	finalAuction = null;
+        } catch (ResourceAccessException rae) {
+        	console.printError("System is Down!");
+        	finalAuction = null;
+        }
+        return finalAuction;
     }
 
     public Auction update(String auctionString) {
-        // place code here
-        return null;
+       Auction updatedAuction = makeAuction(auctionString);
+       String url = BASE_URL + "/" + updatedAuction.getId();
+       HttpHeaders headers = new HttpHeaders();
+       headers.setContentType(MediaType.APPLICATION_JSON);
+       HttpEntity<Auction> res = new HttpEntity<>(updatedAuction, headers);
+       
+       try {
+    	   	restTemplate.put(url, res);
+       }
+       catch (RestClientResponseException rcre) {
+       		console.printError(rcre.getRawStatusCode() + "Occured!");
+       		updatedAuction = null;
+       } 
+       catch (ResourceAccessException rae) {
+       		console.printError("System is Down!");
+       		updatedAuction = null;
+       }
+        return updatedAuction;
     }
 
     public boolean delete(int id) {
-    	// place code here
-    	return false; 
+    	String url = BASE_URL + "/" + id;
+        try {
+        	restTemplate.delete(url);
+        }catch (RestClientResponseException ex) {
+        	console.printError(ex.getRawStatusCode() + " occured!");
+        	return false;
+        }catch (ResourceAccessException rae) {
+        	console.printError("System is DOWN!");
+        	return false;
+        }
+        return true;
     }
 
     private HttpEntity<Auction> makeEntity(Auction auction) {
