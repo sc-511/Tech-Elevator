@@ -28,8 +28,15 @@ public class HotelService {
    * @return Reservation
    */
   public Reservation addReservation(String newReservation) {
-    // TODO: Implement method
-    return null;
+    // 1, John Smith, 10/10/2020, 10/14/2020, 2
+	  Reservation newJavaReservation = makeReservation(newReservation);
+	  String url = "http://localhost:3000/hotels/" + newJavaReservation.getId() + "/reservations";
+	  
+	  HttpHeaders headers = new HttpHeaders();
+	  headers.setContentType(MediaType.APPLICATION_JSON);
+	  HttpEntity<Reservation> request = new HttpEntity<>(newJavaReservation, headers); //needs header object (headers) & body object (newJavaReservation)
+	  Reservation finalReservation = restTemplate.postForObject(url, request, Reservation.class);
+	  return finalReservation;
   }
 
   /**
@@ -40,8 +47,15 @@ public class HotelService {
    * @return
    */
   public Reservation updateReservation(String CSV) {
-    // TODO: Implement method
-    return null;
+    Reservation updatedReservation = makeReservation(CSV);
+    String url = "http://localhost:3000/reservations/" + updatedReservation.getId();
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    HttpEntity<Reservation> res = new HttpEntity<>(updatedReservation, headers);
+    
+    restTemplate.put(url, res);
+    return updatedReservation;
   }
 
   /**
@@ -50,7 +64,15 @@ public class HotelService {
    * @param id
    */
   public void deleteReservation(int id) {
-    // TODO: Implement method
+    String url = "http://localhost:3000/reservations/" + id;
+    try {
+    	restTemplate.delete(url);
+    }catch (RestClientResponseException ex) {
+    	console.printError(ex.getRawStatusCode() + " occured!");
+    }catch (ResourceAccessException rae) {
+    	console.printError("System is DOWN!");
+    }
+    
   }
 
   /* DON'T MODIFY ANY METHODS BELOW */

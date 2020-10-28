@@ -36,8 +36,8 @@ public class App {
     	try {
     		
     		System.out.println("Please enter the id of the requested bid");	
-    	idSelector = Integer.parseInt(scanner.nextLine());
-    	auctionDetails = restTemplate.getForObject(API_URL + "/"+ idSelector, Auction.class);
+    		idSelector = Integer.parseInt(scanner.nextLine());
+    		auctionDetails = restTemplate.getForObject(API_URL + "/"+ idSelector, Auction.class);
     	
     	
     	} catch (NumberFormatException exception) {
@@ -64,6 +64,7 @@ public class App {
     	double priceSelector = 0;
     	Auction [] arrayOfAuctionsBasedOnPrice = null ;
     	System.out.println("Please enter your max price range: ");
+    	
     	try {
     		
     		priceSelector = Double.parseDouble(scanner.nextLine());
@@ -74,13 +75,8 @@ public class App {
     		
     		System.out.println("Error parsing the input for price range");
     	}
-    	
     		
-        	return arrayOfAuctionsBasedOnPrice;
-    	
-    	
-		
-    	
+    	return arrayOfAuctionsBasedOnPrice;
         
     }
 
