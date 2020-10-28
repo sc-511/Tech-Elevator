@@ -24,23 +24,64 @@ public class App {
     }
 
     public static Auction[] listAllAuctions() {
-        // api code here
-        return null;
+    	Auction [] arrayOfAuctions = restTemplate.getForObject(API_URL, Auction[].class);
+        return arrayOfAuctions;
     }
 
     public static Auction listDetailsForAuction() {
-        // api code here
-        return null;
+    	Auction auctionDetails = new Auction();
+    	auctionDetails = null;
+    	int idSelector ;
+    	
+    	try {
+    		
+    		System.out.println("Please enter the id of the requested bid");	
+    	idSelector = Integer.parseInt(scanner.nextLine());
+    	auctionDetails = restTemplate.getForObject(API_URL + "/"+ idSelector, Auction.class);
+    	
+    	
+    	} catch (NumberFormatException exception) {
+    	
+    		auctionDetails = null;
+    		System.out.println("Error parsing the input");
+    	}
+    	
+    	return auctionDetails;
+       
     }
 
     public static Auction[] findAuctionsSearchTitle() {
         // api code here
-        return null;
+    	String titleHolder;
+        System.out.println("Please enter a title: ");
+    	titleHolder = scanner.nextLine();
+    	Auction[] auctionsWithTitles = restTemplate.getForObject(API_URL + "?title_like=" + titleHolder,  Auction[].class);
+        return auctionsWithTitles;
     }
 
     public static Auction[] findAuctionsSearchPrice() {
         // api code here
-        return null;
+    	double priceSelector = 0;
+    	Auction [] arrayOfAuctionsBasedOnPrice = null ;
+    	System.out.println("Please enter your max price range: ");
+    	try {
+    		
+    		priceSelector = Double.parseDouble(scanner.nextLine());
+    		arrayOfAuctionsBasedOnPrice = restTemplate.getForObject(API_URL + "?currentBid_lte=" + priceSelector , Auction[].class);
+    	}
+    	
+    	catch (NumberFormatException exception) {
+    		
+    		System.out.println("Error parsing the input for price range");
+    	}
+    	
+    		
+        	return arrayOfAuctionsBasedOnPrice;
+    	
+    	
+		
+    	
+        
     }
 
     private static void run() {

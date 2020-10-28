@@ -143,8 +143,9 @@ public class App {
     	 * 			list.add(h);}
     	 * 		}
     	 * 	Hotel[] threeStarHotels = new Hotel[list.size()];
-    	 * 	for (int i = 0; i < threeStarHotels.length; size++)j{
-    	 * 	
+    	 * 	for (int i = 0; i < threeStarHotels.length; size++){
+    	 * 	threeStarHotels[i] = list.get(i);
+    	 * }
     	 * 	return threeStarHotels;
     	 * 	}
     	 */
