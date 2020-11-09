@@ -1,0 +1,45 @@
+body{
+
+}
+
+img{
+    padding-left: 40%;
+    padding-right: 50%;
+    align-self: center;
+}
+
+@font-face{
+    font-family: 'Metal Gear Solid Text';
+    src: url(/metal_gear_solid/METAG___.TTF) format('truetype');
+   /* src: url(/metal_gear_solid/MGS2.ttf) format('truetype');
+    src: url(/metal_gear_solid/MGS2MENU.TTF) format('truetype');
+    src: url(/metal_gear_solid/Tactical\ Espionage\ Action.ttf) format('truetype'); */
+}
+
+@font-face{
+    font-family: 'MGSBOLD';
+    src: url(/metal_gear_solid/MGS2.ttf) format('truetype');
+}
+
+h1{
+    text-align: center;
+    font-family: 'Metal Gear Solid Text';
+    color: #BE1014;
+    text-decoration: underline;
+    
+}
+
+#mainBody{
+
+    background-image: url("/img/bigbossV.png");
+
+}
+
+header  p{
+    font-family: 'MGSBOLD';
+    color: black;
+}
+label{
+    font-family: 'MGSBOLD';
+    color: black;
+}
