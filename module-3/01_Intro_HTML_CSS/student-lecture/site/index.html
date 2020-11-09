@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bits & Bytes</title>
+    <link rel="stylesheet" href = "css/style.css" />
+</head>
+<body>
+    <header>
+        <h1> Bits & Bytes Restaurant </h1>
+        <h2> The Internet's best Restaurant </h2>
+    </header>
+
+    <main> 
+        <h3> Menu</h3>
+
+        <section>
+            <h2> Reservations</h2>
+            <form method="POST" action="/api/reservation">
+
+                <div>
+                    <label> What is your name?</label>
+                    <input id ="reservationName" type="text" placeholder="Enter your name" />
+                </div>
+                <div>
+                    <label> Do you want overpriced food?</label>
+                    <input id="overpriced" type="checkbox"/>
+                </div>
+
+                <div>
+                    <label> Number of guests: </label>
+                    <input id="guests" type="number"/>
+                </div>
+
+                <div>
+                    <label for="reservationDate"> Date: </label>
+                    <input id="resDate" type="date"/>
+                </div>
+
+                <div>
+                    <label for="reservationTime"> Time: </label>
+                    <input id="resTime" type="time"/>
+                </div>
+                <div>
+                    <input type="submit" value="Make Reservation"/>
+                </div>
+            </form>
+
+        </section>
+
+        <section>
+
+            <h4> Lunch </h4>
+            <p> Full stack sandwich</p>
+            <img src="images/menu/lunch/full-stack-sandwich.png" />
+            <p> Universal Serial Burger </p>
+            <img src="images/menu/lunch/USBurger.png" />
+
+        </section>
+
+        <section>
+            <h4> Dinner </h4>
+            <p> Array Of Veggies</p>
+            <img src="images/menu/dinner/array-of-vegetables.png" />
+            <p> Rack of RAM </p>
+            <img src="images/menu/dinner/rack-of-ram.png" />
+        </section>
+
+        <p>
+            <a href="reservations.html"> Click here to go to another internal page</a>
+        </p>
+    </main>
+</body>
+</html>
