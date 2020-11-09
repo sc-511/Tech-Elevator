@@ -1,6 +1,8 @@
 img{
     
-   opacity: 0.5;
+   opacity: 1;
+   
+   align-content: flex-end;
     
 }
 @font-face{
