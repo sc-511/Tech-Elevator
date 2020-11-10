@@ -30,6 +30,7 @@ header p{
     color: black;
     text-align: center;
     font-size: x-large;
+    font-family: 'MGSBOLD';
 }
 
 main{
@@ -62,6 +63,12 @@ footer p{
     color: black;
     font-size: large;
 }
-footer a{
+footer {
+    color: black;
     text-decoration: underline;
+    font-family: 'MGSBOLD';
+}
+
+a:hover{
+    color: purple;
 }
