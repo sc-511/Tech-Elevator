@@ -1,11 +1,114 @@
-#main-grid , #experience-grid{
-    display: grid;
+#headline {
+  grid-area: h;
+}
+#student-picture {
+  grid-area: picture;
+  text-align: center;
 }
 
-header {
-
+#student-quote {
+  grid-area: quote;
 }
 
-main{
-    
+#student-profile {
+  grid-area: profile;
+}
+
+#student-contact {
+  grid-area: contact;
+  text-align: center;
+}
+
+#main-grid {
+  display: grid;
+  row-gap: 20px;
+  column-gap: 50px;
+  column-count: 2;
+  grid-template-areas:
+    "h  h h"
+    "quote  quote picture "
+    "profile profile contact "
+    "eg eg eg";
+  align-items: center;
+}
+
+#experience-grid {
+  grid-area: eg;
+}
+
+/* Internal Grid/Second Grid items start down here */
+
+#experience-code {
+  grid-area: ecode;
+}
+
+#experience-database {
+  grid-area: ebase;
+}
+
+#experience-web {
+  grid-area: eweb;
+}
+
+#experience-design {
+  grid-area: edesign;
+}
+
+#experience-grid {
+  display: grid;
+
+  row-gap: 20px;
+  column-gap: 50px;
+  grid-template-areas:
+    "ecode ecode ecode"
+    "ebase ebase ebase"
+    "eweb . edesign";
+}
+
+@media screen and (max-width: 1024px) {
+  #main-grid {
+    column-gap: 35px;
+    column-count: 2;
+    grid-template-areas:
+      "h h h"
+      "quote quote picture"
+      "profile profile contact"
+      "eg eg eg";
+    align-items: center;
+  }
+
+  #experience-grid {
+    row-gap: 20px;
+    column-gap: 20px;
+    column-count: 2;
+    grid-template-areas:
+      "ecode ecode ecode"
+      "ebase ebase ebase"
+      "eweb . edesign";
+  }
+}
+
+@media screen and (max-width: 450px) {
+  #main-grid {
+    row-gap: 5px;
+    column-gap: 5px;
+    column-count: 1;
+    grid-template-areas:
+      "h h h"
+      "picture picture picture"
+      "contact contact contact"
+      "quote quote quote"
+      "eg eg eg";
+  }
+
+  #experience-grid {
+    row-gap: 5px;
+    column-gap: 5px;
+    column-count: 1;
+    grid-template-areas:
+      "ecode ecode ecode"
+      "ebase ebase ebase"
+      "eweb eweb eweb"
+      "edesign edesign edesign";
+  }
 }

@@ -11,7 +11,41 @@
 		iqTest("") → 0 // there are no numbers in the given set
         iqTest("2 2 4 6") → 0 // all numbers are even, therefore there is no position of an odd number
 */
-
+        function iqTest(stringOfNums) {
+            let array = [];
+            let totalIndex = 0;
+            array = stringOfNums.split(" ");
+            for (let i = 0; i < array.length; i++){
+                if (array[i] % 2 === 0){
+                    totalIndex++;
+                    if (totalIndex === array.length){
+                        return 0;
+                    }
+                    else if (totalIndex < array.length && array[i] === array[array.length-1]) {
+                        return totalIndex - 1;
+                    }
+                    else{
+                        return totalIndex;
+                    } 
+                }
+                else if (array[i] % 2 === 1){
+                    totalIndex++;
+                    if (totalIndex === array.length){
+                        return 0;
+                    }
+                    else if (totalIndex < array.length && array[i] === array[array.length-1]) {
+                        return totalIndex - 1;
+                    }
+                    else{
+                        return totalIndex;
+                    } 
+                }
+                else {
+                    return totalIndex;
+                }
+            }
+            return totalIndex;
+        }
 /*
 2. **titleCase** Write a function that will convert a string into title case, given an optional 
     list of exceptions (minor words). The list of minor words will be given as a string with each 
@@ -28,3 +62,25 @@ argument is unused.
 		titleCase('THE WIND IN THE WILLOWS', 'The In') // should return: 'The Wind in the Willows'
         titleCase('the quick brown fox') // should return: 'The Quick Brown Fox'
 */
+         function titleCase(stringValue, stringOptional){
+             let stringValueArray = [];
+             let stringOptional = [];
+            stringValueArray = stringValue.split(" ");
+            stringOptional = stringOptional.split(" ");
+            for (let i = 0; i < stringValueArray.length; i++){
+                if (stringOptional != undefined){
+                    if (stringValueArray[i].substring(0).contains(stringOptional[i])){
+                        stringValueArray[i].toLocaleLowerCase();
+                    }
+                    else{
+                        stringValueArray[i].substring(0, 1).toLocaleUpperCase();
+                        stringValueArray[i].substring(1).toLocaleLowerCase();
+                    }
+                }
+                else {
+                    stringValueArray[i].substring(0,1).toLocaleUpperCase();
+                }
+            }
+                return stringValueArray.toString();
+            }
+         
