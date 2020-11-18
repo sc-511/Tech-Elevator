@@ -19,9 +19,10 @@ function setPageTitle() {
 function displayGroceries() {
   const htmlUnorderedList = document.getElementById("groceries");
   groceries.forEach((item) => {
-    const groceriestList = document.createElement("li");
-    groceriestList.classList.add(item);
-    htmlUnorderedList.insertAdjacentElement('beforeend', groceriestList);
+    const groceriesList = document.createElement("li");
+    groceriesList.classList.add(item);
+    htmlUnorderedList.insertAdjacentElement('beforeend', groceriesList);
+    
   });
   
 }
@@ -34,7 +35,7 @@ function markCompleted() {
 const allGroceries = document.querySelectorAll('li');
 allGroceries.forEach((item) => {
   item.classList.add('completed');
-})
+});
 }
 
 setPageTitle();
