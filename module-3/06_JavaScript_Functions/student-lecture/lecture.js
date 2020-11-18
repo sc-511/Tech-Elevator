@@ -27,7 +27,9 @@ function printToConsole(value) {
  * @param {number} firstParameter the first parameter to multiply
  * @param {number} secondParameter the second parameter to multiply
  */
-
+  function multiplyTogether(firstParameter = 1, secondParameter = 1){
+    return firstParameter * secondParameter;
+  }
 /**
  * This version makes sure that no parameters are ever missing. If
  * someone calls this function without parameters, we default the
@@ -38,7 +40,9 @@ function printToConsole(value) {
  * @param {number} [firstParameter=0] the first parameter to multiply
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
-
+function multiplyNoUndefined(firstParameter = 0, secondParameter = 0){
+  return firstParamter * secondParameter;
+}
 
  
 /**
@@ -86,7 +90,18 @@ function scopeTest() {
     console.log("This won't print!");
   }
 }
-
+/**
+ * JSDoc example
+ * 
+ * Takes the details of a person and create a sentence that uses 
+ * information to describe them.
+ * 
+ * @param {string} name name of the person we are describing 
+ * @param {number} age the age of the person wer are describing
+ * @param {string[]} [listOfQuirks] a list of descriptive quirks about the person 
+ * @param {string} separator the string to separate the quirks 
+ * @returns  {string} the full descriptive string
+ */
 function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') {
   let description = `${name} is currently ${age} years old. Their quirks are: `;
   return description + listOfQuirks.join(separator);
@@ -100,7 +115,9 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
  * @returns {number} sum of all the numbers
  */
 function sumAllNumbers(numbersToSum) {
-  return numbersToSum.reduce();
+  return numbersToSum.reduce((number) => {
+    
+  });
 }
 
 /**
@@ -111,4 +128,13 @@ function sumAllNumbers(numbersToSum) {
  * @returns {number[]} a new array with only those numbers that are
  *   multiples of 3
  */
-function allDivisibleByThree(numbersToFilter) {}
+function allDivisibleByThree(numbersToFilter) {
+  return numbersToFilter.filter( (number) => {
+    if(number % 3 === 0){
+      return true;
+    }
+    else {
+      return false;
+    }
+  });
+}
