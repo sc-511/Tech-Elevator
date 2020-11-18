@@ -1,0 +1,158 @@
+header {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  align-items: center;
+  grid-area: h;
+}
+
+header div {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  align-content: space-between;
+}
+header ul {
+  list-style-type: none;
+}
+
+header nav {
+  padding-left: 20px;
+}
+
+header li {
+  display: inline;
+  border: 10px;
+  margin: 10px;
+  padding: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+
+#submit {
+  width: 15%;
+  padding: 10px;
+  border-radius: 5px;
+  border-color: #00afef;
+  color: white;
+  background-color: #00afef;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+footer {
+  grid-area: footer;
+}
+
+.main-Grid {
+  display: grid;
+  grid-template-areas:
+    "cF cF cF"
+    "fFC fFC fFC"
+    "pRC . sC"
+    "footer footer footer";
+  column-gap: 5px;
+}
+
+.container-fluid .image {
+  grid-area: cfI;
+}
+
+.container-fluid .TEP {
+  grid-area: cFT;
+}
+
+.container-fluid .nav-bar {
+  grid-area: cFNB;
+}
+.container-fluid {
+  grid-area: cF;
+  display: grid;
+}
+
+.funFactsContainer #image {
+  grid-area: fI;
+}
+.funFactsContainer #header {
+  grid-area: fH;
+  padding-top: 30px;
+  padding-left: 30px;
+}
+
+.funFactsContainer #listOfFacts {
+  grid-area: fL;
+  padding-left: 30px;
+}
+.funFactsContainer {
+  grid-area: fFC;
+  display: grid;
+  grid-template-areas:
+    ". . fH"
+    ". . fL"
+    "fI fI fI";
+  border: 5px solid #87ceeb;
+  padding: 20px;
+  margin: -20px;
+  border-radius: 15px;
+}
+.popRaceContainer img {
+  width: 250px;
+  height: 250px;
+}
+.popRaceContainer #image {
+  grid-area: pI;
+}
+
+.popRaceContainer #header {
+  grid-area: pH;
+}
+
+.popRaceContainer #paragraph {
+  grid-area: pP;
+}
+.popRaceContainer {
+  grid-area: pRC;
+  display: grid;
+  grid-template-areas:
+    ". . pH"
+    ". . pP"
+    "pI pI pI";
+  border: 5px solid #87ceeb;
+}
+
+#header {
+  grid-area: sH;
+}
+
+#paragraph {
+  grid-area: sP;
+}
+
+#storeButton {
+  grid-area: sB;
+}
+.summerContainer {
+  grid-area: sC;
+  display: grid;
+  grid-template-areas:
+    ". sH ."
+    "sP sP sP"
+    ". sB .";
+  align-content: center;
+  border: 5px solid #87ceeb;
+}
+
+#left-navBar {
+  grid-area: lNB;
+}
+
+#nav-bar {
+  grid-area: nb;
+}
+
+.headerContainer {
+}
