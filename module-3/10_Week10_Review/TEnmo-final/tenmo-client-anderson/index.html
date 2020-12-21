@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="TEnmo.js"></script>
+    <script src="APIService.js"></script>
+    <link rel="stylesheet" href="Site.css"/>
+</head>
+<body>
+    <section id='loggedOut'>
+        <div id="login" style="display: inline-block;">
+            <form method="POST" action="https://localhost:44315/login">
+                <div>
+                    <label for="username">User Name:</label>
+                    <input type="text" name="username" id="username">    
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password"id="password">    
+                </div>
+                <input type="submit" value="LogIn" id="btnLogin">
+            </form>
+        </div>
+        <div id="register" style="display: inline-block;">
+            <form method="POST" action="https://localhost:44315/login">
+                <div>
+                    <label for="regUN">User Name:</label>
+                    <input type="text" name="regUN" id="registerName">    
+                </div>
+                <div>
+                    <label for="regPWD">Password:</label>
+                    <input type="password" name="regPWD"id="registerPassword">    
+                </div>
+                <input type="submit" value="Register" id="btnRegister">
+            </form>
+        </div>
+    </section>
+    <section id="mainApp" class="hide">
+        <button id="balance">Get Balance</button>
+        <p id="balanceDisplay"></p>
+        <button id="users">Get Users for Transfer</button>
+        <section id='transferStepOne' class="hide">
+            <table>
+                <tbody id="userbody">
+                    <tr>
+                        <th></th>
+                        <th>Account Id</th>
+                        <th>User's Name</th>
+                    </tr>
+                </tbody>
+            </table>
+            <label for="amount">Amount:</label>
+            <input type="number" name="amount" id="amount"/>
+            <button id="maketransfer" disabled='true'>Make Transfer</button>
+        </section>
+        <button id="transferHistory">Get All Transfers</button>
+
+        <section id="transferDisplay" class='hide'>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Transfer Id</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="transferBody">
+                </tbody>
+            </table>
+        </section>
+        <section id="transferDetail" class='hide'>
+            
+        </section>
+    </section>
+</body>
+<style>
+    .hide {
+        display: none;
+    }
+    .error{
+        background-color: red;
+    }
+</style>
+</html>

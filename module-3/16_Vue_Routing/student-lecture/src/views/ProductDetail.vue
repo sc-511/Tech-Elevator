@@ -1,0 +1,13 @@
+<template>
+  <div>Dang it!</div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>
